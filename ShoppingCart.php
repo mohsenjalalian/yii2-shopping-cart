@@ -293,5 +293,40 @@ class ShoppingCart extends Component
         return md5(serialize($data));
     }
 
+    public function getCountMine($output){
 
+        $array2 =array();
+        $array = array();
+        $array3 = array();
+        foreach ($output as $key => $value) {
+            $array[] = $key;
+        }
+
+        foreach ($this->_positions as $position){
+            $array2[] = $position->getQuantity();
+
+        }
+
+        $array3 = array_combine($array, $array2);
+
+        return json_encode($array3);
+    }
+
+    public function getCostMine($output){
+
+        $array2 =array();
+        $array = array();
+        $array3 = array();
+        foreach ($output as $key => $value) {
+            $array[] = $key;
+        }
+
+        foreach ($this->_positions as $position){
+            $array2[] = $position->getCost();
+        }
+
+        $array3 = array_combine($array, $array2);
+
+        return json_encode($array3);
+    }
 }
